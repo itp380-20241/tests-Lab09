@@ -1,2 +1,2 @@
 #!/bin/bash
-cp ../Lab03/CollisionComponent.cpp .
+cp ../Lab09/CollisionComponent.cpp .
