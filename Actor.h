@@ -10,7 +10,7 @@ public:
 	{
 	}
 
-	const Vector3& GetWorldPosition() const { return mPosition; }
+	const Vector3& GetPosition() const { return mPosition; }
 	const Vector3& GetScale() const { return mScale; }
 
 private:
