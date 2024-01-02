@@ -255,6 +255,21 @@ TEST_CASE("GetMinOverlap() - Single overlap side")
 		REQUIRE(offset.y == Approx(0.0f));
 		REQUIRE(offset.z == Approx(0.0f));
 	}
+
+	SECTION("GetMinOverlap() - Make sure offset vector gets reset between calls")
+	{
+		Actor thisActor(Vector3(50.0f, 85.0f, 28.0f), 1.0f);
+		Actor otherActor(Vector3(50.0f, 85.0f, 0.0f), 1.0f);
+		CollisionComponent thisCC(&thisActor);
+		thisCC.SetSize(100.0f, 32.0f, 64.0f);
+		CollisionComponent otherCC(&otherActor);
+		otherCC.SetSize(100.0f, 32.0f, 64.0f);
+		Vector3 offset(8.0f, 16.0f, 32.0f);
+		REQUIRE(thisCC.GetMinOverlap(&otherCC, offset) == CollSide::Top);
+		REQUIRE(offset.x == Approx(0.0f));
+		REQUIRE(offset.y == Approx(0.0f));
+		REQUIRE(offset.z == Approx(4.0f));
+	}
 }
 
 TEST_CASE("GetMinOverlap() - Tie")
